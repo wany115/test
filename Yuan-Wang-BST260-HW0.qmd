@@ -1,0 +1,52 @@
+---
+title: "Yuan Wang BST 260 HW0"
+author: "Yuan Wang"
+format: html
+editor: visual
+execute: 
+  echo: false
+---
+
+First, we assign values to a, b, and c accordingly with a=1, b=3, c=2.
+
+```{r}
+#Assigning values
+a <- 1
+b <- 3
+c <- 2
+```
+
+Then we solve the equation with the quadratic formula and print out the two solutions x_1 and x_2.
+
+```{r}
+#Quadratic formula for solution
+x_1 = (-b + sqrt(b^2 - 4 * a * c)) / (2 * a)
+x_2 = (-b - sqrt(b^2 - 4 * a * c)) / (2 * a)
+
+result <- x_1 == x_2
+
+if (any(is.nan(x_1))||any(is.nan(x_2))) {
+  print("The equation has no real-number solution.")
+}else if (result) {
+  print ("The equation has only one solution.")
+}else {
+  print(paste("The two solutions to the given equation are",x_1, "and", x_2))
+}
+```
+
+Then we plot the function with a certain range of x (*I use (-10,10)*). It is also desirable to zoom in with ylim() to observe the number of solutions (*I use (-20,20)*). We add a horizontal line to see the intersections with x-axis (i.e. the solutions).
+
+```{r}
+#Plot it
+x <- seq(-10, 10, length=300)
+plot(x, a*x^2+b*x+c, type="l", ylim = c(-20,20))
+abline(h = 0, lty = 2)
+```
+
+The graph's intersections with the x-axis reveal the number of solutions to the equation.
+
+-   If two intersections: Two solutions 
+
+-   If one intersection: Only one solution
+
+-   If no intersection: No real-number solution
